@@ -12,21 +12,14 @@ class WigglesUITests: XCTestCase {
 
     func testNavigationToPDPAndBack() {
         let plp = PuppyListingPage(app: app)
-        XCTAssertTrue(plp.isLoaded())
-        plp.tapFirstPuppy()
         let pdp = PuppyDetailsPage(app: app)
-        XCTAssertTrue(pdp.puppyNameExists())
-        XCTAssertTrue(pdp.dogPictureExists())
-        XCTAssertTrue(pdp.genderExists())
-        XCTAssertTrue(pdp.distanceExists())
-        XCTAssertTrue(pdp.timeExists())
-        XCTAssertTrue(pdp.ownerPictureExists())
-        XCTAssertTrue(pdp.ownerNameExists())
-        XCTAssertTrue(pdp.ownerBioExists())
-        XCTAssertTrue(pdp.contactButtonExists())
-        XCTAssertTrue(pdp.adoptMeButtonExists())
+
+        XCTAssertTrue(plp.hasPuppyCards, "Expected at least one puppy card on listing page.")
+        plp.tapLastPuppy()
+        XCTAssertTrue(pdp.cardDetails, "Expected PDP to load successfully.")
         pdp.tapFavorite()
         pdp.goBack()
-        XCTAssertTrue(plp.isLoaded())
+        XCTAssertTrue(plp.hasPuppyCards, "Expected to return to the listing page.")
     }
 }
+
