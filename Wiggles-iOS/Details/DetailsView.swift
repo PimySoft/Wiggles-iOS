@@ -26,13 +26,21 @@ struct DetailsView: View {
                         ZStack(alignment: .top) {
                             Image(viewModel.model.image).resizable()
                                 .frame(height: 400).frame(maxWidth: .infinity)
+                                .accessibilityIdentifier("Dog Picture")
+                                .accessibilityLabel("Dog Picture")
                             HStack {
                                 Button(action: { self.presentationMode.wrappedValue.dismiss() },
                                        label: { Image(IMAGE_BACK_ICON).resizable().frame(width: 34, height: 34) })
+                                            .accessibilityIdentifier("Back")
+                                            .accessibilityLabel("List Page")
                                 Spacer()
                                 Button(action: { viewModel.favouriteMethod() },
                                        label: { Image(IMAGE_FAV_ICON).resizable().frame(width: 26, height: 26) })
+                                            .accessibilityIdentifier("Fav Button")
+                                            .accessibilityLabel("Add To Favourites")
                             }.padding(.horizontal, 24).padding(.top, 46)
+
+
                         }
                         Group {
                             HStack {
@@ -41,12 +49,19 @@ struct DetailsView: View {
                                 Spacer()
                                 GenderView(isMale: viewModel.model.gender == "male")
                             }.padding(.vertical, 8)
+                                .accessibilityIdentifier("Gender")
+                                .accessibilityLabel("Gender")
+                                .accessibilityValue(viewModel.model.gender)
+
                             
                             HStack(alignment: .center) {
                                 HStack(alignment: .center, spacing: 2) {
                                     Image(IMAGE_LOC_ICON).resizable().frame(width: 24, height: 24)
                                     Text("\(viewModel.model.location) away").modifier(SailecFont(.regular, size: 14))
                                         .foregroundColor(Color.text_primary_color).padding(.top, 2)
+                                        .accessibilityIdentifier("Distance")
+                                        .accessibilityLabel("Distance")
+                                        .accessibilityValue(viewModel.model.location)
                                 }
                                 Spacer()
                                 Text("\(viewModel.model.age) yrs | \(viewModel.model.about)").modifier(SailecFont(.regular, size: 14))
@@ -58,6 +73,9 @@ struct DetailsView: View {
                                     .foregroundColor(Color.text_primary_color)
                                 Spacer()
                             }.padding(.leading, 6).padding(.top, 2)
+                                .accessibilityIdentifier("Time")
+                                .accessibilityLabel("Post date")
+                                .accessibilityValue("12 min ago")
                             
                             VStack(spacing: 16) {
                                 HStack {
@@ -68,6 +86,7 @@ struct DetailsView: View {
                                 Text(viewModel.story).modifier(SailecFont(.regular, size: 16))
                                     .foregroundColor(Color.text_primary_color)
                             }.padding(.vertical, 16)
+                                .accessibilityIdentifier("Dog Story")
                             
                             VStack(spacing: 16) {
                                 HStack {
@@ -86,6 +105,8 @@ struct DetailsView: View {
                                 HStack {
                                     Text("Owner Info").modifier(SailecFont(.bold, size: 18))
                                         .foregroundColor(Color.text_primary_color)
+                                        .accessibilityIdentifier("Owner")
+                                        .accessibilityLabel("Owner")
                                     Spacer()
                                 }
                                 DetailsOwnerView(image: viewModel.model.owner.image, name: viewModel.model.owner.name, bio: viewModel.model.owner.bio, messageMethod: viewModel.messageMethod)
@@ -96,6 +117,8 @@ struct DetailsView: View {
                                 .frame(height: 50).frame(maxWidth: .infinity)
                                 .background(Color.main_color).cornerRadius(8)
                                 .padding(.vertical, 24)
+                                .accessibilityIdentifier("Adopt Me")
+                                .accessibilityLabel("Adopt Me")
                             
                         }.padding(.horizontal, 16).padding(.top, 8)
                     }.background(Color.primary_color)
@@ -129,6 +152,8 @@ struct DetailsOwnerView: View {
             Button(action: { self.messageMethod() },
                    label: { Image(IMAGE_MSG_ICON).resizable().frame(width: 20, height: 20) })
                 .frame(width: 45, height: 45).background(Color.main_color).cornerRadius(25)
+                .accessibilityIdentifier("Contact Owner")
+                .accessibilityLabel("Contact Owner")
         }
     }
 }

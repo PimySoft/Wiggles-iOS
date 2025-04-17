@@ -14,4 +14,5 @@ class HomeViewModel: ObservableObject {
     init() { fetchDogsList() }
     
     func fetchDogsList() { dogsList = DogData.dogs }
+        
 }

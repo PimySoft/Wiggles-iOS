@@ -21,6 +21,8 @@ struct HomeView: View {
                             VStack(alignment: .leading) {
                                 Text("Hey Sameer,").modifier(SailecFont(.bold, size: 24))
                                     .foregroundColor(Color.text_primary_color).padding(.top, 16)
+                                    .accessibilityIdentifier("User Name")
+
                                 Text("Adopt a new friend near you!").modifier(SailecFont(.regular, size: 18))
                                     .foregroundColor(Color.text_primary_color).padding(.top, 4)
                             }
@@ -34,6 +36,7 @@ struct HomeView: View {
                                 HomeListModelView(image: model.image, name: model.name, age: model.age,
                                                   about: model.about, location: model.location, gender: model.gender).padding(.bottom, 4)
                             })
+                            .accessibilityIdentifier("Dog Card")
                         }
                     }
                     Spacer()
