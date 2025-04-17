@@ -46,12 +46,15 @@ struct DetailsView: View {
                             HStack {
                                 Text(viewModel.model.name).modifier(SailecFont(.bold, size: 24)).lineLimit(1)
                                     .foregroundColor(Color.text_primary_color)
+                                    .accessibilityIdentifier("Name")
+                                    .accessibilityValue(viewModel.model.name)
                                 Spacer()
                                 GenderView(isMale: viewModel.model.gender == "male")
+                                    .accessibilityIdentifier("Gender")
+                                    .accessibilityLabel("Gender")
+                                    .accessibilityValue(viewModel.model.gender)
                             }.padding(.vertical, 8)
-                                .accessibilityIdentifier("Gender")
-                                .accessibilityLabel("Gender")
-                                .accessibilityValue(viewModel.model.gender)
+
 
                             
                             HStack(alignment: .center) {
@@ -104,9 +107,6 @@ struct DetailsView: View {
                             VStack(spacing: 16) {
                                 HStack {
                                     Text("Owner Info").modifier(SailecFont(.bold, size: 18))
-                                        .foregroundColor(Color.text_primary_color)
-                                        .accessibilityIdentifier("Owner")
-                                        .accessibilityLabel("Owner")
                                     Spacer()
                                 }
                                 DetailsOwnerView(image: viewModel.model.owner.image, name: viewModel.model.owner.name, bio: viewModel.model.owner.bio, messageMethod: viewModel.messageMethod)
@@ -142,11 +142,16 @@ struct DetailsOwnerView: View {
     var body: some View {
         HStack {
             Image(image).resizable().scaledToFill().frame(width: 60, height: 60).cornerRadius(30)
+                .foregroundColor(Color.text_primary_color)
+                .accessibilityIdentifier("Owner Picture")
+                .accessibilityLabel("Owner Picture")
             VStack(alignment: .leading, spacing: 8) {
                 Text(name).modifier(SailecFont(.medium, size: 16))
                     .foregroundColor(Color.text_primary_color)
+                    .accessibilityIdentifier("Owner Name")
                 Text(bio).modifier(SailecFont(.regular, size: 14))
                     .foregroundColor(Color(hex: "828282"))
+                    .accessibilityIdentifier("Owner Bio")
             }.padding(.leading, 8)
             Spacer()
             Button(action: { self.messageMethod() },
